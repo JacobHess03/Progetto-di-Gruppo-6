@@ -61,3 +61,7 @@ tables = cursor.fetchall()
 tables
 
 
+ # inserimento unità
+def insert_unita(unità):
+    cursor.executemany("INSERT INTO UnitaMilitare (nome, numero_soldati, tipo) VALUES (?, ?, ?)", unità)
+

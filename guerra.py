@@ -1,4 +1,4 @@
-import esercito
+import esercito as e
 # Classe base
 class UnitaMilitare:
     def __init__(self, nome, numero_soldati):
@@ -13,6 +13,11 @@ class UnitaMilitare:
 
     def ritira(self):
         print(f"{self.nome} si sta ritirando strategicamente.")
+        
+    
+        
+        
+    
 
 
 # Classi derivate con override
@@ -117,12 +122,21 @@ class Ricognizione(UnitaMilitare):
 
 
 # ControlloMilitare
-class ControlloMilitare:
-    def __init__(self):
+class ControlloMilitare(Fanteria, Cavalleria, Ricognizione, SupportoLogistico):
+    def __init__(self, nome, numero_soldati):
+        
+        Fanteria.__init__(nome, numero_soldati)
+        Cavalleria.__init__(nome, numero_soldati)
+        Ricognizione.__init__(nome, numero_soldati)
+        SupportoLogistico.__init__(nome, numero_soldati)
+        
         self.unita_registrate = {}  # chiave: nome unità, valore: oggetto
-
+        
     def registra_unita(self, unita):
+        
         self.unita_registrate[unita.nome] = unita
+        #query di esempio
+        e.insert_unita(unita)
         print(f"Registrata unità: {unita.nome}")
 
     def mostra_unita(self):
@@ -157,21 +171,21 @@ class Esercito:
             print(f"- Controllo ID {id} con {len(controllo.unita_registrate)} unità.")
 
 
-# Creazione unità
-f = Fanteria("Fanteria Alfa", 100)
-a = Artiglieria("Artiglieria Bravo", 50)
-c = Cavalleria("Cavalleria Charlie", 30)
+# # Creazione unità
+# f = Fanteria("Fanteria Alfa", 100)
+# a = Artiglieria("Artiglieria Bravo", 50)
+# c = Cavalleria("Cavalleria Charlie", 30)
 
-# Controllo militare
-cm = ControlloMilitare()
-cm.registra_unita(f)
-cm.registra_unita(a)
-cm.registra_unita(c)
+# # Controllo militare
+# cm = ControlloMilitare()
+# cm.registra_unita(f)
+# cm.registra_unita(a)
+# cm.registra_unita(c)
 
-cm.mostra_unita()
-cm.dettagli_unita("Artiglieria Bravo")
+# cm.mostra_unita()
+# cm.dettagli_unita("Artiglieria Bravo")
 
-# Azioni
-f.muovi()
-a.attacca()
-c.ritira()
+# # Azioni
+# f.muovi()
+# a.attacca()
+# c.ritira()
