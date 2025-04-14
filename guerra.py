@@ -52,7 +52,9 @@ class Ricognizione(UnitaMilitare):
 
 class ControlloMilitare(Fanteria, Artiglieria, Cavalleria, SupportoLogistico, Ricognizione):
    
-    def __init__(self):
+    def __init__(self, nome, numero_soldati):
+        
+        super(self, nome, numero_soldati)
         self.unita_registrate = {}  # chiave: nome unità, valore: oggetto
 
     def registra_unita(self, unita):
@@ -74,9 +76,11 @@ class ControlloMilitare(Fanteria, Artiglieria, Cavalleria, SupportoLogistico, Ri
             
 class Esercito(ControlloMilitare):
     
-    def __init__(self):
+    def __init__(self, nome, numero_soldati):
+        
+        super(self, nome, numero_soldati)
         self.controllo = {}  # chiave: id, valore: oggetto
-    
+        
 
     def registra_esercito(self, controllo):
         id = 0
