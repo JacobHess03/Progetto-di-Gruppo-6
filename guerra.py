@@ -50,26 +50,23 @@ class Ricognizione(UnitaMilitare):
     def conduci_ricognizione(self):
         print(f"{self.nome} conduce una missione di sorveglianza.")
 
-
-# Classe ControlloMilitare
 class ControlloMilitare(Fanteria, Artiglieria, Cavalleria, SupportoLogistico, Ricognizione):
     def __init__(self):
-        self.unita_registrate = []
+        self.unita_registrate = {}  # chiave: nome unità, valore: oggetto
 
     def registra_unita(self, unita):
-        self.unita_registrate.append(unita)
+        self.unita_registrate[unita.nome] = unita
         print(f"Registrata unità: {unita.nome}")
 
     def mostra_unita(self):
         print("Unità registrate:")
         for unita in self.unita_registrate:
-            print(f"- {unita.nome} ({unita.__class__.__name__})")
+            print(f"- {self.unita_registrate.nome} )")
 
     def dettagli_unita(self, nome_unita):
-        for unita in self.unita_registrate:
-            if unita.nome == nome_unita:
-                print(f"Dettagli per {nome_unita}:")
-                print(f"  Tipo: {unita.__class__.__name__}")
-                print(f"  Numero soldati: {unita.numero_soldati}")
-                return
-        print(f"Nessuna unità trovata con il nome '{nome_unita}'.")
+        unita = self.unita_registrate.get(nome_unita)
+        if unita:
+            print(f"Dettagli per {nome_unita}:")
+            print(f"  Numero soldati: {unita.numero_soldati}")
+        else:
+            print(f"Nessuna unità trovata con il nome '{nome_unita}'.")
