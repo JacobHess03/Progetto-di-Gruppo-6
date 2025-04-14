@@ -89,7 +89,7 @@ class SupportoLogistico(UnitaMilitare):
 
     def ritira(self):
         super().ritira()
-        print(f"{self.nome} evacua l'equipaggiamento in sicurezza.")
+        print(f"{self.nome} evacua l’equipaggiamento in sicurezza.")
 
     def rifornisci_unita(self):
         print(f"{self.nome} si occupa del rifornimento e della manutenzione delle truppe.")
@@ -126,14 +126,14 @@ class ControlloMilitare:
 
     def mostra_unita(self):
         print("Unità registrate:")
-        for unita in self.unita_registrate.unita:
-            print(f"- {unita.nome}")
+        for unita in self.unita_registrate.values():
+            print(f"- {unita.nome})")
 
     def dettagli_unita(self, nome_unita):
         unita = self.unita_registrate.get(nome_unita)
         if unita:
             print(f"Dettagli per {nome_unita}:")
-
+           
             print(f"  Numero soldati: {unita.numero_soldati}")
         else:
             print(f"Nessuna unità trovata con il nome '{nome_unita}'.")
@@ -154,3 +154,23 @@ class Esercito:
         print("Eserciti registrati:")
         for id, controllo in self.controlli.items():
             print(f"- Controllo ID {id} con {len(controllo.unita_registrate)} unità.")
+
+
+# Creazione unità
+f = Fanteria("Fanteria Alfa", 100)
+a = Artiglieria("Artiglieria Bravo", 50)
+c = Cavalleria("Cavalleria Charlie", 30)
+
+# Controllo militare
+cm = ControlloMilitare()
+cm.registra_unita(f)
+cm.registra_unita(a)
+cm.registra_unita(c)
+
+cm.mostra_unita()
+cm.dettagli_unita("Artiglieria Bravo")
+
+# Azioni
+f.muovi()
+a.attacca()
+c.ritira()
