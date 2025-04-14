@@ -61,7 +61,7 @@ class ControlloMilitare(Fanteria, Artiglieria, Cavalleria, SupportoLogistico, Ri
     def mostra_unita(self):
         print("Unità registrate:")
         for unita in self.unita_registrate:
-            print(f"- {self.unita_registrate.nome} )")
+            print(f"- {unita.nome} )")
 
     def dettagli_unita(self, nome_unita):
         unita = self.unita_registrate.get(nome_unita)
