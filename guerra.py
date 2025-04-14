@@ -14,47 +14,110 @@ class UnitaMilitare:
         print(f"{self.nome} si sta ritirando strategicamente.")
 
 
-# Classi derivate
+# Classi derivate con override
 class Fanteria(UnitaMilitare):
     def __init__(self, nome, numero_soldati):
-        super(self, nome, numero_soldati)
+        super().__init__(nome, numero_soldati)
+
+    def muovi(self):
+        super().muovi()
+        print(f"{self.nome} si muove a piedi in formazione.")
+
+    def attacca(self):
+        super().attacca()
+        print(f"{self.nome} usa fucili e baionette nell’attacco.")
+
+    def ritira(self):
+        super().ritira()
+        print(f"{self.nome} si ritira coprendosi con fumo o trincee.")
+
     def costruisci_trincea(self):
         print(f"{self.nome} costruisce trincee per la difesa temporanea.")
 
 
 class Artiglieria(UnitaMilitare):
     def __init__(self, nome, numero_soldati):
-        super(self, nome, numero_soldati)
+        super().__init__(nome, numero_soldati)
+
+    def muovi(self):
+        super().muovi()
+        print(f"{self.nome} si muove trascinando i pezzi di artiglieria.")
+
+    def attacca(self):
+        super().attacca()
+        print(f"{self.nome} spara colpi a lunga distanza.")
+
+    def ritira(self):
+        super().ritira()
+        print(f"{self.nome} ritira l'artiglieria verso una nuova posizione.")
+
     def calibra_artiglieria(self):
-        print(f"{self.nome} calibra i pezzi di artiglieria per una maggiore precisione.")
+        print(f"{self.nome} calibra i pezzi di artiglieria per maggiore precisione.")
 
 
 class Cavalleria(UnitaMilitare):
     def __init__(self, nome, numero_soldati):
-        super(self, nome, numero_soldati)
+        super().__init__(nome, numero_soldati)
+
+    def muovi(self):
+        super().muovi()
+        print(f"{self.nome} si muove rapidamente a cavallo.")
+
+    def attacca(self):
+        super().attacca()
+        print(f"{self.nome} carica il nemico con velocità e sorpresa.")
+
+    def ritira(self):
+        super().ritira()
+        print(f"{self.nome} si ritira a cavallo velocemente.")
+
     def esplora_terreno(self):
-        print(f"{self.nome} esplora il terreno per raccogliere informazioni sul nemico.")
+        print(f"{self.nome} esplora il terreno per raccogliere informazioni.")
 
 
 class SupportoLogistico(UnitaMilitare):
     def __init__(self, nome, numero_soldati):
-        super(self, nome, numero_soldati)
+        super().__init__(nome, numero_soldati)
+
+    def muovi(self):
+        super().muovi()
+        print(f"{self.nome} trasporta i rifornimenti.")
+
+    def attacca(self):
+        super().attacca()
+        print(f"{self.nome} difende i rifornimenti in caso di attacco.")
+
+    def ritira(self):
+        super().ritira()
+        print(f"{self.nome} evacua l'equipaggiamento in sicurezza.")
+
     def rifornisci_unita(self):
         print(f"{self.nome} si occupa del rifornimento e della manutenzione delle truppe.")
 
 
 class Ricognizione(UnitaMilitare):
-    
     def __init__(self, nome, numero_soldati):
-        super(self, nome, numero_soldati)
+        super().__init__(nome, numero_soldati)
+
+    def muovi(self):
+        super().muovi()
+        print(f"{self.nome} si muove silenziosamente per osservare il nemico.")
+
+    def attacca(self):
+        super().attacca()
+        print(f"{self.nome} ingaggia solo se strettamente necessario.")
+
+    def ritira(self):
+        super().ritira()
+        print(f"{self.nome} si ritira rapidamente senza farsi notare.")
+
     def conduci_ricognizione(self):
         print(f"{self.nome} conduce una missione di sorveglianza.")
 
-class ControlloMilitare(Fanteria, Artiglieria, Cavalleria, SupportoLogistico, Ricognizione):
-   
-    def __init__(self, nome, numero_soldati):
-        
-        super(self, nome, numero_soldati)
+
+# ControlloMilitare
+class ControlloMilitare:
+    def __init__(self):
         self.unita_registrate = {}  # chiave: nome unità, valore: oggetto
 
     def registra_unita(self, unita):
@@ -63,34 +126,31 @@ class ControlloMilitare(Fanteria, Artiglieria, Cavalleria, SupportoLogistico, Ri
 
     def mostra_unita(self):
         print("Unità registrate:")
-        for unita in self.unita_registrate:
-            print(f"- {unita.nome} )")
+        for unita in self.unita_registrate.unita:
+            print(f"- {unita.nome}")
 
     def dettagli_unita(self, nome_unita):
         unita = self.unita_registrate.get(nome_unita)
         if unita:
             print(f"Dettagli per {nome_unita}:")
+
             print(f"  Numero soldati: {unita.numero_soldati}")
         else:
             print(f"Nessuna unità trovata con il nome '{nome_unita}'.")
-            
-class Esercito(ControlloMilitare):
-    
-    def __init__(self, nome, numero_soldati):
-        
-        super(self, nome, numero_soldati)
-        self.controllo = {}  # chiave: id, valore: oggetto
-        
+
+
+# Esercito
+class Esercito:
+    def __init__(self):
+        self.controlli = {}
+        self.id_counter = 0
 
     def registra_esercito(self, controllo):
-        id = 0
-        while(True):
-            self.controllo[id] = controllo
-            id = id + 1
-            print(f"Registrata unità: {controllo.nome}")
-            scelta = input("Vuoi continuare ad inserire un controllo nell'esercito? (s/n)").strip().lower()
-            if scelta == "no":
-                break
+        self.controlli[self.id_counter] = controllo
+        print(f"Registrato controllo con ID: {self.id_counter}")
+        self.id_counter += 1
 
-        
-        
+    def mostra_eserciti(self):
+        print("Eserciti registrati:")
+        for id, controllo in self.controlli.items():
+            print(f"- Controllo ID {id} con {len(controllo.unita_registrate)} unità.")
