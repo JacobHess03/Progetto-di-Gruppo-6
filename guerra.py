@@ -1,3 +1,4 @@
+import esercito
 # Classe base
 class UnitaMilitare:
     def __init__(self, nome, numero_soldati):
