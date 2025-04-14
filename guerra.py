@@ -51,6 +51,7 @@ class Ricognizione(UnitaMilitare):
         print(f"{self.nome} conduce una missione di sorveglianza.")
 
 class ControlloMilitare(Fanteria, Artiglieria, Cavalleria, SupportoLogistico, Ricognizione):
+   
     def __init__(self):
         self.unita_registrate = {}  # chiave: nome unità, valore: oggetto
 
@@ -70,3 +71,22 @@ class ControlloMilitare(Fanteria, Artiglieria, Cavalleria, SupportoLogistico, Ri
             print(f"  Numero soldati: {unita.numero_soldati}")
         else:
             print(f"Nessuna unità trovata con il nome '{nome_unita}'.")
+            
+class Esercito(ControlloMilitare):
+    
+    def __init__(self):
+        self.controllo = {}  # chiave: id, valore: oggetto
+    
+
+    def registra_esercito(self, controllo):
+        id = 0
+        while(True):
+            self.controllo[id] = controllo
+            id = id + 1
+            print(f"Registrata unità: {controllo.nome}")
+            scelta = input("Vuoi continuare ad inserire un controllo nell'esercito? (s/n)").strip().lower()
+            if scelta == "no":
+                break
+
+        
+        
