@@ -1,4 +1,4 @@
-# Corpi d'armata
+# Corpi d'armata 🪖
 
 Un'applicazione Python per la gestione corpi d'armata di un esercito.
 
