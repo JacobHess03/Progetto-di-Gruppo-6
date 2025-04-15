@@ -1,4 +1,4 @@
-# import esercito as e
+# import esercito as e  Esempio di DB
 # Classe base
 class UnitaMilitare:
     def __init__(self, nome, numero_soldati):
