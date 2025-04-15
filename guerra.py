@@ -1,4 +1,4 @@
-import esercito as e
+# import esercito as e
 # Classe base
 class UnitaMilitare:
     def __init__(self, nome, numero_soldati):
@@ -136,7 +136,7 @@ class ControlloMilitare(Fanteria, Cavalleria, Ricognizione, SupportoLogistico):
         
         self.unita_registrate[unita.nome] = unita
         #query di esempio
-        e.insert_unita(unita)
+        # e.insert_unita(unita)
         print(f"Registrata unità: {unita.nome}")
 
     def mostra_unita(self):
